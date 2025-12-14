@@ -53,6 +53,9 @@ EXPECTED OUTPUT OF renderTasks():
 <p id="empty-state">No tasks yet. Add your first task above!</p>
 */
 
+let tasks = loadTasks();
+renderTasks(tasks);
+
 // This function should:
 // - Clear the current task list
 // - Loop through the tasks array
@@ -61,6 +64,25 @@ EXPECTED OUTPUT OF renderTasks():
 // - Show the empty state message when there are no tasks
 function renderTasks(tasks, listElement, emptyStateElement) {
   // TODO: Implement rendering logic
+  
+  listElement.innerHTML = ""; //Clear current task list
+
+  if (tasks.length === 0){
+    //show empty state message
+    emptyStateElement.style.display = "block";
+    return;
+  }
+
+  else {
+    //Hide empty state message
+    emptyStateElement.style.display = "none";
+  }
+
+  tasks.forEach ((task, index) => {
+    const li = createTaskElement(task, index); 
+    listElement.appendChild(li);
+  });
+
 }
 
 
@@ -72,6 +94,8 @@ function renderTasks(tasks, listElement, emptyStateElement) {
 // - NOT add event listeners (app.js will handle that)
 function createTaskElement(task) {
   // TODO: Implement element creation logic
+
+
 }
 
 

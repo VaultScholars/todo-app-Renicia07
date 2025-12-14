@@ -48,5 +48,5 @@ function saveTasks(tasks) {
   const tasksJSON = JSON.stringify(tasks);
 
   // Save it under a STORAGE_KEY
-  localStorage.setItem("STORAGE_KEY", tasksJSON);
+  localStorage.setItem("STORAGE_KEY", "tasksJSON");
 }

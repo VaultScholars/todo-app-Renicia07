@@ -35,4 +35,8 @@ function loadTasks() {
 // - Save it to localStorage using STORAGE_KEY
 function saveTasks(tasks) {
   // TODO: Save tasks to localStorage
+  //Converts array into a JSON string
+  const taskJSON = JSON.stringify(tasks);
+  // Save it under a key
+  localStorage.setItem("tasks", taskJSON);
 }

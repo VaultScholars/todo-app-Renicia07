@@ -95,6 +95,56 @@ function renderTasks(tasks, listElement, emptyStateElement) {
 function createTaskElement(task) {
   // TODO: Implement element creation logic
 
+  const li = document.creatElement ("li");
+  li.classList.add("task-item");
+  li.setAttribute("data-id", String(task.id ?? ""));
+
+  const left = document.createElement("div");
+  left.classList.add("task-item-left");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("task-checkbox");
+  checkbox.checked = Boolean(task.completed);
+
+  const main = document.createElement("div");
+  main.classList.add("task-main");
+
+  const title = document.createElement("p");
+  title.classList.add("task-title");
+  title.textContent = task.title ?? task.text ?? "";
+
+  const hasCategory = task.category && String(task.category).trim() !== "";
+  const hasDueDate = task.dueDate && String(task.dueDate).trim() !== "";
+
+  if (hasCategory || hasDueDate) {
+    const meta = document.createElement("p");
+    meta.classList.add("task-meta");
+    const parts = [];
+    if (hasCategory) parts.push(String(task.category));
+    if (hasDueDate) parts.push(String(task.dueDate));
+    meta.textContent = parts.join(" • ");
+    main.appendChild(meta);
+}
+
+  const actions = document.createElement("div");
+  actions.classList.add("task-actions");
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.type = "button";
+  deleteBtn.classList.add("task-delete-btn");
+  deleteBtn.textContent = "Delete";
+
+  main.insertBefore(title, main.firstChild);
+  left.appendChild(checkbox);
+  left.appendChild(main);
+
+  actions.appendChild(deleteBtn);
+
+  li.appendChild(left);
+  li.appendChild(actions);
+
+return li;
 
 }
 

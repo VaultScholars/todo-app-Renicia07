@@ -95,7 +95,7 @@ function renderTasks(tasks, listElement, emptyStateElement) {
 function createTaskElement(task) {
   // TODO: Implement element creation logic
 
-  const li = document.creatElement ("li");
+  const li = document.createElement ("li");
   li.classList.add("task-item");
   li.setAttribute("data-id", String(task.id ?? ""));
 
@@ -155,4 +155,17 @@ return li;
 // - Put focus back on the task title input
 function clearTaskForm(form) {
   // TODO: Reset the form and focus the title input
+
+//Reset form fields to their initial state
+form.reset();
+
+//Focus the title input
+const titleInput = 
+  form.querySelector("#task-title") ||
+  form.querySelector('[name="title"]') ||
+  form.querySelector("input[type='text']");
+
+  if (titleInput) {
+    titleInput.focus();
+  }
 }

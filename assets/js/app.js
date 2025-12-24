@@ -83,19 +83,26 @@ document.addEventListener("DOMContentLoaded", () => {
     if (target.classList.contains("task-checkbox")) {
       // What should happen here:
       // - Find the matching task in the array
-      // - Toggle its completed state
-      // - Save updated tasks
-      // - Update the page
+      const task = tasks.find(t => t.id === taskId);
+
+      if (task) { 
+        task.completed = !task.completed;// - Toggle its completed state
+        localStorage.setItem("tasks", JSON.stringify(tasks));// - Save updated tasks
+        updateTaskInDOM(taskId, task.completed);// - Update the page
+      }
       // TODO: Toggle completed state
       return;
     }
 
     // If the delete button was clicked:
     if (target.classList.contains("task-delete-btn")) {
-      // What should happen here:
-      // - Remove the task from the tasks array
-      // - Save updated tasks
-      // - Update the page
+
+      if (target.classList.contains("task-delete-btn")){
+        tasks = tasks.filter(t => t.id !== taskId); // - Remove the task from the tasks array
+        localStorage.setItem("tasks", JSON.stringify(tasks)); // - Save updated tasks
+        removeTaskFromDOM(taskId); // - Update the page
+      }
+
       // TODO: Delete the task
       return;
     }

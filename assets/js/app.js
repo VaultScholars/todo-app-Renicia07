@@ -35,12 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // What should happen here:
     // - Read values from the form (title, category, due date)
-    form.addEventListener("submit", (event) => {
-  event.preventDefault();
 
-  const title = form.querySelector("#task-title").value.trim();
-  const category = form.querySelector("#task-category").value.trim();
-  const dueDate = form.querySelector("#task-due-date").value;
+    const title = form.querySelector("#task-title").value.trim();
+    const category = form.querySelector("#task-category").value.trim();
+    const dueDate = form.querySelector("#task-due-date").value;
 
     // - Validate that the title is not empty
     if (title === "") {

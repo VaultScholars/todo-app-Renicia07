@@ -15,10 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // When starting the app:
   // - Load tasks from localStorage
-  // - Update nextTaskId so it doesn't conflict
-  // - Show tasks on the page
-  // TODO: Load tasks and render them
+  const savedTasks = JSON.parse(localStorage.getItem("STORAGE_KEY")) || [];
+  tasks = savedTasks;
 
+  // - Update nextTaskId so it doesn't conflict
+  if (tasks.length > 0) {
+    nextTaskId = Math.max (...tasks.map(t => t.id)) + 1
+  }
+
+  // - Show tasks on the page
+
+  // TODO: Load tasks and render them
+  tasks.forEach(task => renderTask(task, taskList, emptyState));
 
 
   // When the user submits the form to add a task:
@@ -27,12 +35,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // What should happen here:
     // - Read values from the form (title, category, due date)
+    form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const title = form.querySelector("#task-title").value.trim();
+  const category = form.querySelector("#task-category").value.trim();
+  const dueDate = form.querySelector("#task-due-date").value;
+
     // - Validate that the title is not empty
+    if (title === "") {
+      alert("Task title cannot be empty!");
+      return;
+  }
+
     // - Create a new task object
+    const newTask = {
+      id: nextTaskId++,
+      title,
+      category,
+      dueDate,
+      completed: false
+  };
+
     // - Add it to the tasks array
-    // - Save updated tasks to localStorage
+    tasks.push(newTask);
+     // - Save updated tasks to localStorage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
     // - Update the page to show the new task
-    // - Clear the form
+    renderTask(newTask, taskList, emptyState);
+     // - Clear the form
+    form.reset();
+});
+   
     // TODO: Add a new task
   });
 

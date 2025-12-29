@@ -92,34 +92,43 @@ function renderTasks(tasks, listElement, emptyStateElement) {
 // - Add the correct classes to each element
 // - Make the checkbox checked if the task is completed
 // - NOT add event listeners (app.js will handle that)
+
 function createTaskElement(task) {
   // TODO: Implement element creation logic
 
+  //Creates the outer <li> container for the task
   const li = document.createElement ("li");
   li.classList.add("task-item");
   li.setAttribute("data-id", String(task.id ?? ""));
 
+  //Left section: Checkbos and main content
   const left = document.createElement("div");
   left.classList.add("task-item-left");
 
+  //Checkbox for completion state
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.classList.add("task-checkbox");
   checkbox.checked = Boolean(task.completed);
 
+  //Main content: Title and optional meta info
   const main = document.createElement("div");
   main.classList.add("task-main");
 
+  //Task title
   const title = document.createElement("p");
   title.classList.add("task-title");
   title.textContent = task.title ?? task.text ?? "";
 
+  //Optional meta info (category and/or due date)
   const hasCategory = task.category && String(task.category).trim() !== "";
   const hasDueDate = task.dueDate && String(task.dueDate).trim() !== "";
 
   if (hasCategory || hasDueDate) {
     const meta = document.createElement("p");
     meta.classList.add("task-meta");
+
+    // Collect category and due date into one string
     const parts = [];
     if (hasCategory) parts.push(String(task.category));
     if (hasDueDate) parts.push(String(task.dueDate));
@@ -127,6 +136,7 @@ function createTaskElement(task) {
     main.appendChild(meta);
 }
 
+  //Action section: Delete button
   const actions = document.createElement("div");
   actions.classList.add("task-actions");
 
@@ -135,6 +145,7 @@ function createTaskElement(task) {
   deleteBtn.classList.add("task-delete-btn");
   deleteBtn.textContent = "Delete";
 
+  //Assemble structure
   main.insertBefore(title, main.firstChild);
   left.appendChild(checkbox);
   left.appendChild(main);
@@ -144,7 +155,7 @@ function createTaskElement(task) {
   li.appendChild(left);
   li.appendChild(actions);
 
-return li;
+return li; //Return fully built task element
 
 }
 
@@ -166,6 +177,6 @@ const titleInput =
   form.querySelector("input[type='text']");
 
   if (titleInput) {
-    titleInput.focus();
+    titleInput.focus(); //If a title input is found, set focus so the user can immediately type a new task
   }
 }

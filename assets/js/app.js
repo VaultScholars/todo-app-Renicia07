@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // - Show tasks on the page
 
   // TODO: Load tasks and render them
-  tasks.forEach(task => renderTasks(tasks, taskList, emptyState));
+  renderTasks(tasks, taskList, emptyState);
 
 
   // When the user submits the form to add a task:
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveTasks(tasks); // use storage.js function
 
     // - Update the page to show the new task
-    renderTask(newTask, taskList, emptyState);
+    renderTask(tasks, taskList, emptyState);
      // - Clear the form
     clearTaskForm(form);
 });

@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (task) { 
         task.completed = !task.completed;// - Toggle its completed state
-        localStorage.setItem("tasks", JSON.stringify(tasks));// - Save updated tasks
+        saveTasks(tasks);// - Save updated tasks
         updateTaskInDOM(taskId, task.completed);// - Update the page
       }
       // TODO: Toggle completed state
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (target.classList.contains("task-delete-btn")){
         tasks = tasks.filter(t => t.id !== taskId); // - Remove the task from the tasks array
-        localStorage.setItem("tasks", JSON.stringify(tasks)); // - Save updated tasks
+        saveTasks(tasks);// - Save updated tasks
         removeTaskFromDOM(taskId); // - Update the page
       }
 

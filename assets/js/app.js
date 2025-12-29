@@ -15,18 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // When starting the app:
   // - Load tasks from localStorage
-  const savedTasks = JSON.parse(localStorage.getItem("STORAGE_KEY")) || [];
+  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks = savedTasks;
 
   // - Update nextTaskId so it doesn't conflict
   if (tasks.length > 0) {
-    nextTaskId = Math.max (...tasks.map(t => t.id)) + 1
+    nextTaskId = Math.max (...tasks.map(t => t.id)) + 1;
   }
 
   // - Show tasks on the page
 
   // TODO: Load tasks and render them
-  tasks.forEach(task => renderTask(task, taskList, emptyState));
+  tasks.forEach(task => renderTasks(tasks, taskList, emptyState));
 
 
   // When the user submits the form to add a task:
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // - Update the page to show the new task
     renderTask(newTask, taskList, emptyState);
      // - Clear the form
-    form.reset();
+    clearTaskForm(form);
 });
    
     // TODO: Add a new task

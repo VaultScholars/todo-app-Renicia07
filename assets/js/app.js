@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // When starting the app:
   // - Load tasks from localStorage
-  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const savedTasks = loadTasks();
   tasks = savedTasks;
 
   // - Update nextTaskId so it doesn't conflict
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // - Add it to the tasks array
     tasks.push(newTask);
      // - Save updated tasks to localStorage
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    saveTasks(tasks); // use storage.js function
 
     // - Update the page to show the new task
     renderTask(newTask, taskList, emptyState);

@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveTasks(tasks); // use storage.js function
 
     // - Update the page to show the new task
-    renderTask(tasks, taskList, emptyState);
+    renderTasks(tasks, taskList, emptyState);
      // - Clear the form
     clearTaskForm(form);
 });
